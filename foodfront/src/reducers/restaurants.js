@@ -6,7 +6,7 @@ const initialState = []
 const restaurants = (state= initialState, action) => {
    switch(action.type){
        case 'FETCH_RESTAURANTS_SUCCESS':
-           return[...action.data]
+           return[{...action.data}]
         case 'NEW_USER':
             return[...state, action.newUser]    
         case 'DELETE_USER':

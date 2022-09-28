@@ -21,16 +21,17 @@ componentDidMount(){
  fetch('http://localhost:3000/api/v1/restaurants')
  .then(resp => resp.json())
  .then(data => {
+    console.log(data)
      this.props.fetchRestaurantsSuccess(data)
  })
 }
 
 renderRestaurants = () => {
-    return this.props.restaurants.map(rest => (
-        
-        <Restaurant restaurant={rest} />
-      
-    ))
+    return this.props.restaurants.map(function(rest, index) {
+        return(
+        <Restaurant key={index} restaurant={rest} />
+        )
+})
 }
 
     render(){

@@ -39,7 +39,7 @@ class Login extends React.Component{
           fetch('http://localhost:3000/api/v1/auth', reqObj)
           .then(resp => resp.json())
           .then(data => {
-            console.log(data)
+            // console.log(data)
             if (data.error) {
                 this.setState({
                   error: data.error

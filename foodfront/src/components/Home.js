@@ -5,64 +5,96 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import {connect} from 'react-redux'
-import Restaurant from './restaurant'
-import {fetchRestaurantsSuccess} from '../actions/restaurants'
+// import {fetchRestaurantsSuccess} from '../actions/restaurants'
 import Chatbot from "react-chatbot-kit";
 
 import config from '../config'
 import MessageParser from '../MessageParser'
 import ActionProvider from '../ActionProvider'
+import { Link } from 'react-router-dom'
 
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 
 class Home extends React.Component {
  
-componentDidMount(){
- fetch('http://localhost:3000/api/v1/restaurants')
- .then(resp => resp.json())
- .then(data => {
-    console.log(data)
-     this.props.fetchRestaurantsSuccess(data)
- })
-}
+// componentDidMount(){
+//  fetch('http://localhost:3000/api/v1/restaurants')
+//  .then(resp => resp.json())
+//  .then(data => {
+//      this.props.fetchRestaurantsSuccess(data)
+//  })
+// }
 
-renderRestaurants = () => {
-    return this.props.restaurants.map(function(rest, index) {
-        return(
-        <Restaurant key={index} restaurant={rest} />
-        )
-})
-}
+// renderRestaurants = () => {
+//     return this.props.restaurants.map(rest => {
+//         console.log(rest.id)
+//         return(
+            
+//         <Restaurant restaurant={rest} />
+//         )
+// })
+// }
+
+
+
 
     render(){
-        return(
-            <div >
-                <Nav/>
-                <Container>
-                <Row>
-                    <Col xs={6} md={4}><Chatbot
-                        config={config}
-                        messageParser={MessageParser}
-                        actionProvider={ActionProvider}
-                        /></Col>
-                        <Col xs={12} md={8}>{this.renderRestaurants()}</Col>
-                </Row>
-                </Container>
-            </div>
-        )
+        
+        // console.log(this.props.restaurants, 'FNJAWNVLAJNWVJA')
+        const {restaurants} = this.props
+        
+           const restaurantList = restaurants.map(restaurant => {
+                
+                return    <Card style={{ width: '18rem' }} key={restaurant.id}>
+                        <Card.Img variant="top" src="holder.js/100px180" />
+                        <Card.Body>
+                        <Card.Title>{restaurant.name}</Card.Title>
+                        <Card.Text>
+                        {restaurant.address}
+                        {restaurant.opening_hours}
+                        {restaurant.cuisine}
+                        </Card.Text>
+                        <Link to={'/' + restaurant.id}>
+                        <Button variant="primary">Go somewhere</Button>
+                        </Link>
+                        </Card.Body>
+                    </Card>
+                
+            })
+                 
+            
+        
+     return(
+        <>
+            <Nav/>
+            <Container>
+                    <Row>
+                        <Col xs={6} md={4}><Chatbot
+                            config={config}
+                            messageParser={MessageParser}
+                            actionProvider={ActionProvider}
+                            /></Col>
+                            <Col> {restaurantList}</Col>
+                    </Row>
+             </Container>
+        </>
+     )   
     }
 }
 
 const mapStateToProps = (state) => {
     return {
+        //state from the store and restaurants is the name of the 
+        //object in reducers
         restaurants: state.restaurants,
         auth: state.auth
     }
-}
-
-const mapDispatchToProps = {
-    fetchRestaurantsSuccess
+    
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+
+
+export default connect(mapStateToProps)(Home)

@@ -28,7 +28,7 @@ class Api::V1::AuthController < ApplicationController
     user = User.find(user_id)
     if user
       render json: { id: user.id, username: user.username, token: token }
-    elserails
+    else
       render json: { error: 'invalid token' }
     end
   end #end of show action

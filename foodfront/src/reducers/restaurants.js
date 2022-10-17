@@ -15,21 +15,34 @@ const initialState = {
 //     return state.restaurants
 // }
 
-const restaurants = (state= initialState, action) => {
-    // console.log(...state.restaurants)
+const restaurants = (state = initialState, action) => {
+    console.log(state.restaurants, 'AAAAAAAA')
    switch(action.type){
-       case 'FETCH_RESTAURANTS_SUCCESS':
-           return[...state.restaurants, action.data]
-        case 'NEW_USER':
-            return[...state, action.newUser]    
-        case 'DELETE_USER':
-            const delId = parseInt(action.id)
-            const delNote = state.filter(note => {
-                return note.id !== delId
-                })
-            return delNote
+       case 'LOAD_RESTAURANTS':
+           return[...state.restaurants];
+           case 'NEW_USER':
+            return[...state, action.newUser]; 
            default:
            return state.restaurants
    }
 }
 export default restaurants 
+
+// const restaurants = (state= initialState, action) => {
+//     // console.log(...state.restaurants)
+//    switch(action.type){
+//        case 'FETCH_RESTAURANTS_SUCCESS':
+//            return[...state.restaurants, action.data]
+//         case 'NEW_USER':
+//             return[...state, action.newUser]    
+//         case 'DELETE_USER':
+//             const delId = parseInt(action.id)
+//             const delNote = state.filter(note => {
+//                 return note.id !== delId
+//                 })
+//             return delNote
+//            default:
+//            return state.restaurants
+//    }
+// }
+// export default restaurants 

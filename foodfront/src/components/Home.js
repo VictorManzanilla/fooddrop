@@ -19,27 +19,6 @@ import Card from 'react-bootstrap/Card';
 
 class Home extends React.Component {
  
-// componentDidMount(){
-//  fetch('http://localhost:3000/api/v1/restaurants')
-//  .then(resp => resp.json())
-//  .then(data => {
-//      this.props.fetchRestaurantsSuccess(data)
-//  })
-// }
-
-// renderRestaurants = () => {
-//     return this.props.restaurants.map(rest => {
-//         console.log(rest.id)
-//         return(
-            
-//         <Restaurant restaurant={rest} />
-//         )
-// })
-// }
-
-
-
-
     render(){
         
         // console.log(this.props.restaurants, 'FNJAWNVLAJNWVJA')
@@ -63,8 +42,6 @@ class Home extends React.Component {
                     </Card>
                 
             })
-                 
-            
         
      return(
         <>

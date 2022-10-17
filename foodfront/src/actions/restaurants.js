@@ -1,10 +1,10 @@
 
 
 
-export const fetchRestaurantsSuccess = (data) => {
+export const fetchRestaurantsSuccess = () => {
     return {
-        type: 'FETCH_RESTAURANTS_SUCCESS',
-        data: data
+        type: 'LOAD_RESTAURANTS'
+        
     }
 }
 export const newUser = (newUser) => {

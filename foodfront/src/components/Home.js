@@ -24,6 +24,7 @@ class Home extends React.Component {
         // console.log(this.props.restaurants, 'FNJAWNVLAJNWVJA')
         const {restaurants} = this.props
         
+        
            const restaurantList = restaurants.map(restaurant => {
                 
                 return    <Card style={{ width: '18rem' }} key={restaurant.id}>

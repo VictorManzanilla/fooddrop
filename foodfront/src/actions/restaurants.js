@@ -3,7 +3,7 @@
 
 export const fetchRestaurantsSuccess = () => {
     return {
-        type: 'LOAD_RESTAURANTS'
+        type: 'FETCH_RESTAURANT_SUCCESS'
         
     }
 }

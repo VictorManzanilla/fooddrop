@@ -16,7 +16,7 @@ const initialState = {
 // }
 
 const restaurants = (state = initialState, action) => {
-    console.log(state.restaurants, 'AAAAAAAA')
+    
    switch(action.type){
        case 'LOAD_RESTAURANTS':
            return[...state.restaurants];

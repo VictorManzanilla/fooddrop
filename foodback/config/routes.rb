@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :restaurants
-       resources :users, only: [:create]
        #resources gives you all 7 RESTFUL routes
        # resources :favorites
       # post '/auth', to: 'auth#create'

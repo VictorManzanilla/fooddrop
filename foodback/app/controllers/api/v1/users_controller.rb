@@ -10,26 +10,24 @@ class Api::V1::UsersController < ApplicationController
 
 
     def create
-        user = User.create(user_params)
+        user = User.new(user_params)
         
-        if user.valid?
-            payload = {user_id: user.id}
-            token = encode_token(payload)
-        render json: {user: user, token: token}
+        if user.save
+            render json: {status: 201, user: user, logged_in: true}
        else
-        render json: {errors: user.errors.full_messages}
+        render json: {status: 500, message: "There was an error in creating an account"}
        end
     end
-    def login
-        user = User.find_by(username: user_params[:username])
+    # def login
+    #     user = User.find_by(username: user_params[:username])
 
-        if user && user.authenticate(user_params[:password])
-            token = encode_token({user_id: user.id})
-            render json: {user: user, token: token}
-        else
-            render json: {errors: user.errors.full_messages}
-        end
-    end
+    #     if user && user.authenticate(user_params[:password])
+    #         token = encode_token({user_id: user.id})
+    #         render json: {user: user, token: token}
+    #     else
+    #         render json: {errors: user.errors.full_messages}
+    #     end
+    # end
 
     # def show
     #     if user
@@ -59,7 +57,7 @@ class Api::V1::UsersController < ApplicationController
 
   
     def user_params
-        params.require(:user).permit(:username, :password_digest)
+        params.require(:user).permit(:email, :password, :password_confirmation)
     end
 
 end

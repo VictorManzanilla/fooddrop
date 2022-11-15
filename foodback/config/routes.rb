@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       # get "/user_is_authed", to: "auth#user_is_authed"
     ##################new routes#####################
     post "/login", to: "users#login"
+    resources :sessions, only: [:create]
+    resources :users, only: [:create]
     end
   end
 end

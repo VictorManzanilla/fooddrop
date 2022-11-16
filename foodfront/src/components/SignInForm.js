@@ -1,15 +1,20 @@
 import React, {useState} from 'react'
 
 function SignInForm(props) {
-    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
 
-    const handleUsernameChange = (e) => {
-        setUsername(e.target.value)
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value)
     }
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value)
+    }
+    const handleConfirmPasswordChange = (e) => {
+        setConfirmPassword(e.target.value)
     }
 
     const handleSubmit = (e) => {
@@ -21,16 +26,16 @@ function SignInForm(props) {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                username,
-                password
+                email,
+                password,
+                confirmPassword
             })
         })
         .then(resp => resp.json())
         .then(data => {
-            localStorage.setItem("token", data.jwt)
-            props.handleLogin(data.user)
+           console.log(data)
         })
-        setUsername("")
+        setEmail("")
         setPassword("")
     }
     const formDivStyle = {
@@ -45,13 +50,16 @@ function SignInForm(props) {
             <form className="ui form" onSubmit={handleSubmit}>
                 <div className="field">
                     <label>Username</label>
-                    <input value={username} onChange={handleUsernameChange} type="text" placeholder="username"/>
+                    <input value={email} onChange={handleEmailChange} type="text" placeholder="username"/>
                 </div>
                 <div className="field">
                     <label>Password</label>
                     <input value={password} onChange={handlePasswordChange} type="password" placeholder="password"/>
                 </div>
-                
+                <div className="field">
+                    <label>Confirm Password</label>
+                    <input value={confirmPassword} onChange={handleConfirmPasswordChange} type="password" placeholder="Confirm Password"/>
+                </div>
                 <button className="ui button" type="submit">Submit</button>
             </form>
         </div>

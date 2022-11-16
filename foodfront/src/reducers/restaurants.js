@@ -18,7 +18,7 @@ const initialState = {
 const restaurants = (state = initialState, action) => {
     
    switch(action.type){
-       case 'LOAD_RESTAURANTS':
+       case 'FETCH_RESTAURANT_SUCCESS':
            return[...state.restaurants];
            case 'NEW_USER':
             return[...state, action.newUser]; 

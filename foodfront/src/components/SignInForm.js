@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import {signup} from '../actions/auth'
+import {connect} from 'react-redux'
 
 function SignInForm(props) {
     const [email, setEmail] = useState("")
@@ -19,25 +21,10 @@ function SignInForm(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetch('http://localhost:3000/api/v1/users', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                email,
-                password,
-                confirmPassword
-            })
-        })
-        .then(resp => resp.json())
-        .then(data => {
-           console.log(data)
-        })
-        setEmail("")
-        setPassword("")
+       props.signup(email, password, confirmPassword)
     }
+    ///////something wrong with cors//////////////
+    
     const formDivStyle = {
         margin: "auto",
         padding: "20px",
@@ -66,4 +53,23 @@ function SignInForm(props) {
     )
 }
 
-export default SignInForm
+export default connect(null, {signup})(SignInForm)
+
+// fetch('http://localhost:3000/api/v1/users', {
+//     method: "POST",
+//     headers: {
+//         "Content-Type": "application/json",
+//         "Accept": "application/json"
+//     },
+//     body: JSON.stringify({
+//         email,
+//         password,
+//         confirmPassword
+//     })
+// })
+// .then(resp => resp.json())
+// .then(data => {
+//    console.log(data)
+// })
+// setEmail("")
+// setPassword("")

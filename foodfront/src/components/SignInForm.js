@@ -21,6 +21,7 @@ function SignInForm(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        // console.log(props)
        props.signup(email, password, confirmPassword)
     }
     ///////something wrong with cors//////////////
@@ -36,8 +37,8 @@ function SignInForm(props) {
             <h1>Sign Up</h1>
             <form className="ui form" onSubmit={handleSubmit}>
                 <div className="field">
-                    <label>Username</label>
-                    <input value={email} onChange={handleEmailChange} type="text" placeholder="username"/>
+                    <label>Email</label>
+                    <input value={email} onChange={handleEmailChange} type="email" placeholder="Email"/>
                 </div>
                 <div className="field">
                     <label>Password</label>

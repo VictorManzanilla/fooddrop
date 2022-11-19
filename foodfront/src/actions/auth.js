@@ -9,8 +9,10 @@ export const signup = user => {
             },
             body: JSON.stringify({user: user})
         })
-        .then(res => res.json())
-        .then(data => dispatch({type:'LOGIN_SUCCESS',
+        .then((res) => res.json())
+        .then((data) => 
+        console.log(data),
+        dispatch({type:'LOGIN_SUCCESS',
          payload: {loggedIn: data.logged_in, currentUser: data.user}}))
     }
 }

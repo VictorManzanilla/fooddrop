@@ -28,11 +28,11 @@ class Navigation extends React.Component {
                     {
                         this.props.auth.id
                         ?
-                        <Nav.Link as={Link} to="/Login" onClick={this.props.logoutSuccess}>Logout</Nav.Link>
+                        <Nav.Link as={Link} to="/LoginForm" onClick={this.props.logoutSuccess}>Logout</Nav.Link>
                          :                        
-                <Nav.Link as={Link} to="/Login">Login</Nav.Link>
+                <Nav.Link as={Link} to="/LoginForm">Login</Nav.Link>
                          }
-                <Nav.Link as={Link} to="/addUser">NewUser</Nav.Link>
+                <Nav.Link as={Link} to="/SignInForm">Sign up!</Nav.Link>
                 <Nav.Link as={Link} to="/Explore">Explore</Nav.Link>
                 <Navbar.Text>
       Signed in as: {this.props.auth.username}

@@ -11,7 +11,7 @@ export const signup = user => {
         })
         .then((res) => res.json())
         .then((data) => 
-        console.log(data),
+        // console.log(data),
         dispatch({type:'LOGIN_SUCCESS',
          payload: {loggedIn: data.logged_in, currentUser: data.user}}))
     }

@@ -19,6 +19,7 @@ import Card from 'react-bootstrap/Card';
 
 class Home extends React.Component {
  
+    
     render(){
         
         // console.log(this.props.restaurants, 'FNJAWNVLAJNWVJA')
@@ -66,7 +67,7 @@ const mapStateToProps = (state) => {
     return {
         //state from the store and restaurants is the name of the 
         //object in reducers
-        restaurants: state.restaurants,
+        
         auth: state.auth
     }
     

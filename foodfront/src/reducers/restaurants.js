@@ -1,4 +1,45 @@
 
+
+const restaurants = (state = {}, action) => {
+    switch(action.type){
+        case 'FETCH_RESTAURANT_SUCCESS':
+            return {
+                ...state
+        
+            }
+    default:
+        return state
+    }
+}
+export default restaurants
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const initialState = {
 //     restaurants: [
 //         {id: 0, name: 'Tacos El Tio', address: '3734 W Grand Ave, Chicago, IL 60651', opening_hours: '9am - 9:30pm', cuisine: 'Mexican'},

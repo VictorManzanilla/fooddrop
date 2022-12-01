@@ -17,33 +17,59 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 
+
+
 class Home extends React.Component {
+
+
+    // componentDidMount(){
+    //     fetch('http://localhost:3000/api/v1/notes')
+    //     .then(resp => resp.json())
+    //     .then(notes => {
+    //       this.props.fetchNotesSuccess(notes)
+    //     })
+    //     }
+        
+    
+    //      notesArr = () => {
+    //         return this.props.notes.map(note => {
+    //           return  <UserNote note={note}  key={note.id}/>
+    //         })     
+    //       }
+
+        componentDidMount() {
+            fetch('http://localhost:3000/api/v1/restaurants')
+            .then(res => res.json())
+            .then(restaurants => {
+                console.log(restaurants)
+            })
+        }
+        
+         restaurantList = () => {
+            return this.props.restaurants.map(restaurant => {
+             return  <Card style={{ width: '18rem' }} key={restaurant.id}>
+             <Card.Img variant="top" src="holder.js/100px180" />
+             <Card.Body>
+             <Card.Title>{restaurant.name}</Card.Title>
+             <Card.Text>
+             {restaurant.address}
+             {restaurant.opening_hours}
+             {restaurant.cuisine}
+             </Card.Text>
+             <Link to={'/' + restaurant.id}>
+             <Button variant="primary">Go somewhere</Button>
+             </Link>
+             </Card.Body>
+         </Card>
+           })     
+         }
+    
+
  
     
     render(){
-        
-        // console.log(this.props.restaurants, 'FNJAWNVLAJNWVJA')
-        const {restaurants} = this.props
-        
-        
-           const restaurantList = restaurants.map(restaurant => {
-                
-                return    <Card style={{ width: '18rem' }} key={restaurant.id}>
-                        <Card.Img variant="top" src="holder.js/100px180" />
-                        <Card.Body>
-                        <Card.Title>{restaurant.name}</Card.Title>
-                        <Card.Text>
-                        {restaurant.address}
-                        {restaurant.opening_hours}
-                        {restaurant.cuisine}
-                        </Card.Text>
-                        <Link to={'/' + restaurant.id}>
-                        <Button variant="primary">Go somewhere</Button>
-                        </Link>
-                        </Card.Body>
-                    </Card>
-                
-            })
+      
+    
         
      return(
         <>
@@ -55,7 +81,7 @@ class Home extends React.Component {
                             messageParser={MessageParser}
                             actionProvider={ActionProvider}
                             /></Col>
-                            <Col> {restaurantList}</Col>
+                            <Col> {this.restaurantList()}</Col>
                     </Row>
              </Container>
         </>

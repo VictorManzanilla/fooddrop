@@ -13,7 +13,7 @@ class ActionProvider {
         this.updateChatbotState(greetingMessage)
       }
       hungry() {
-        const greetingMessage = this.createChatBotMessage("No thanks, I just had a byte to eat")
+        const greetingMessage = this.createChatBotMessage("No thanks, I just had a byte")
         this.updateChatbotState(greetingMessage)
       }
       Raza() {

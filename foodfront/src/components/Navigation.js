@@ -10,10 +10,11 @@ import {connect} from 'react-redux'
 
 
 const Navigation = ({user}) => {
-    
+   
     
        return(
             <div>
+            
                 <Navbar bg="dark" variant="dark">
                 <Navbar.Brand as={Link} to="/" >
                 <img
@@ -24,16 +25,15 @@ const Navigation = ({user}) => {
                     className="d-inline-block align-top"
                 /> </Navbar.Brand>
                 <Nav className="mr-auto">
-                    {
-                        user.id
-                        ?
-                        <Nav.Link as={Link} to="/LoginForm" >Logout</Nav.Link>
-                         :                        
+                    
+                        {/* <Nav.Link as={Link} to="/LoginForm" >Logout</Nav.Link> */}
+                                                
                 <Nav.Link as={Link} to="/LoginForm">Login</Nav.Link>
-                         }
+                         
                 <Nav.Link as={Link} to="/SignInForm">Sign up!</Nav.Link>
                 <Nav.Link as={Link} to="/Explore">Explore</Nav.Link>
                 <Navbar.Text>
+              
       Signed in as: {user.email}
     </Navbar.Text>
                 </ Nav>
@@ -48,7 +48,7 @@ const Navigation = ({user}) => {
 
 
 const mapStateToProps = state => {
-    return{
+    return {
       user: state.auth.currentUser
     }
   }

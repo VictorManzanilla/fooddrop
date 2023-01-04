@@ -1,62 +1,55 @@
-import React, {useState} from 'react'
+import React, {Component} from 'react'
+import {login} from '../actions/auth'
+import {connect} from 'react-redux'
 
-function LoginForm(props){
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
 
-    const handleUsernameChange = (e) => {
-        setUsername(e.target.value)
-    }
 
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value)
-    }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        fetch('http://localhost:3000/api/v1/login', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                username,
-                password
-            })
-        })
-        .then(resp => resp.json())
-        .then(data => {
-            localStorage.setItem("token", data.jwt)
-            props.handleLogin(data.user)
-        })
-        setUsername("")
-        setPassword("")
-    }
-    const formDivStyle = {
-        margin: "auto",
-        padding: "20px",
-        width: "80%"
-    }
-    return(
+
+class LoginForm extends Component {
+    state = {
+      email: '',
+      password: '',
+    };
+  
+    handleOnChange = (e) => {
+      this.setState({
+        [e.target.name]: e.target.value,
+      });
+    };
+  
+    handleOnSubmit = (e) => {
+      e.preventDefault();
+      this.props.login(this.state, this.props.history);
+      
+    };
+  
+    render() {
+      return (
         <div>
-            <div style={formDivStyle}>
-            <h1>Log In</h1>
-            <form className="ui form" onSubmit={handleSubmit}>
-                <div className="field">
-                    <label>Username</label>
-                    <input value={username} onChange={handleUsernameChange} type="text" placeholder="username"/>
-                </div>
-                <div className="field">
-                    <label>Password</label>
-                    <input value={password} onChange={handlePasswordChange} type="password" placeholder="password"/>
-                </div>
-                
-                <button className="ui button" type="submit">Submit</button>
-            </form>
+          <form onSubmit={this.handleOnSubmit}>
+            <label>Email</label>
+            <input
+              name="email"
+              value={this.state.email}
+              onChange={this.handleOnChange}
+              type="text"
+            />
+            <br />
+            <label>Password</label>
+            <input
+              name="password"
+              value={this.state.password}
+              onChange={this.handleOnChange}
+              type="text"
+            />
+            <br />
+          
+            <button type="submit">Login</button>
+          </form>
         </div>
-        </div>
-    )
-} 
-
-export default LoginForm
+      );
+    }
+  }
+  
+  export default connect(null, { login })(LoginForm);
